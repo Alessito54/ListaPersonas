@@ -2,7 +2,7 @@ package Menu;
 
 import Lista.Lista;
 import Lista.Nodo;
-import Persona.Persona;
+import Persona.Estudiante;
 import Validaciones.Validaciones;
 
 import javax.swing.*;

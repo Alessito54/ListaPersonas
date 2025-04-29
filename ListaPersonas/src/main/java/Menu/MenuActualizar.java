@@ -2,7 +2,7 @@ package Menu;
 
 import Lista.Lista;
 import Lista.Nodo;
-import Persona.Persona;
+import Persona.Estudiante;
 import Validaciones.Validaciones;
 
 import javax.swing.JOptionPane;
@@ -16,7 +16,7 @@ public class MenuActualizar {
             Nodo nodo = lista.buscarDato(dato);
 
             if (nodo != null) {
-                Persona persona = nodo.getDato();
+                Estudiante persona = nodo.getDato();
 
                 String menu = "----- MENÚ DE ACTUALIZACIÓN -----\n"
                         + "1. Actualizar Nombre\n"

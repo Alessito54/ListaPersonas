@@ -1,6 +1,7 @@
 package Menu;
 
-import Persona.Persona;
+import Persona.Estudiante;
+import Persona.Estudiante;
 import Lista.Lista;
 
 import javax.swing.JOptionPane;
@@ -49,9 +50,9 @@ public class MenuAgregar {
                     if (Validaciones.esIne(ine)) {
                         JOptionPane.showMessageDialog(null, "Ine agregado exitosamente");
 
-                        Persona persona = new Persona(nombre, edad, ine);
+                        Estudiante persona = new Estudiante(nombre, edad, ine);
                         lista.add(persona);
-                        JOptionPane.showMessageDialog(null, "Persona agregada exitosamente.");
+                        JOptionPane.showMessageDialog(null, "Estudiante agregado exitosamente.");
                         return;
                     }
                 }

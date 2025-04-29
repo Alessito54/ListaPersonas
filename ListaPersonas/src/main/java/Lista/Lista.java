@@ -1,7 +1,9 @@
 package Lista;
 
 
-import Persona.Persona;
+import Persona.Estudiante;
+
+import Persona.Estudiante;
 import Validaciones.Validaciones;
 
 import javax.swing.*;
@@ -19,7 +21,7 @@ public class Lista {
         return Cabeza;
     }
 
-    public Lista add(Persona persona) {
+    public Lista add(Estudiante persona) {
 
         Nodo nuevoNodo = new Nodo(persona);//variable del nuevo nodo
 
@@ -45,7 +47,7 @@ public class Lista {
                     return nodo;
                 }
             } else {
-                Persona persona = nodo.getDato();
+                Estudiante persona = nodo.getDato();
                 if (persona != null)
                 {
                     if (dato.equals(persona.getIne())) {
@@ -92,9 +94,9 @@ public class Lista {
         }
     }
 
-    public Persona mostrarDato(Nodo nodo) {
+    public Estudiante mostrarDato(Nodo nodo) {
         if (nodo != null) {
-            Persona persona = nodo.getDato();
+            Estudiante persona = nodo.getDato();
             if (persona != null) {
                 return persona;
             } else {

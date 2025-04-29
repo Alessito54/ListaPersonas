@@ -1,22 +1,23 @@
 package Lista;
 
-import Persona.Persona;
+import Persona.Estudiante;
+import Persona.Estudiante;
 
 public class Nodo {
-    private Persona dato;
+    private Estudiante dato;
     private Nodo proximo;
     private Nodo anterior;
     private int posicion;
 
-    public Nodo(Persona dato) {
+    public Nodo(Estudiante dato) {
         this.dato = dato;
     }
 
-    public Persona getDato() {
+    public Estudiante getDato() {
         return dato;
     }
 
-    public void setDato(Persona dato) {
+    public void setDato(Estudiante dato) {
         this.dato = dato;
     }
 
