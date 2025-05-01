@@ -11,18 +11,18 @@ public class MenuBuscarPersona {
     public static void buscarPersona(Lista lista) {
         Validaciones v = new Validaciones();
         if (!v.listaVacia(lista)){
-            String ine = JOptionPane.showInputDialog(null,
+            String matricula = JOptionPane.showInputDialog(null,
                     "BUSCAR PERSONA\n\n" +
-                            "Ingrese el INE de la persona a buscar:",
+                            "Ingrese el Matricula del estudiante a buscar:",
                     "Búsqueda de Personas",
                     JOptionPane.PLAIN_MESSAGE);
 
-            if(ine == null || ine.equals("")) {
+            if(matricula == null || matricula.equals("")) {
                 return;
             }
 
-            if (  lista.buscarDato(ine) != null &&  lista.buscarDato(ine).getDato() != null) {
-                JOptionPane.showMessageDialog(null, lista.buscarDato(ine).getDato());
+            if (  lista.buscarDato(matricula) != null &&  lista.buscarDato(matricula).getDato() != null) {
+                JOptionPane.showMessageDialog(null, lista.buscarDato(matricula).getDato());
             }
         }else JOptionPane.showMessageDialog(null, "No hay personas registradas");
     }

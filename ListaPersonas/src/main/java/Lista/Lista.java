@@ -1,11 +1,16 @@
 package Lista;
+
 import Persona.Estudiante;
 import Validaciones.Validaciones;
 
 import javax.swing.*;
+
+@SuppressWarnings("ALL")
 public class Lista {
-    protected Nodo Cabeza;
+    protected static Nodo Cabeza;
     protected Validaciones validaciones = new Validaciones();
+
+
 
     public Lista() {
         this.Cabeza = null;
@@ -14,8 +19,10 @@ public class Lista {
     public Nodo getCabeza() {
         return Cabeza;
     }
-
-    public Lista add(Estudiante estudiante) {
+    public String getTipoDeLista() {
+        return "Lista";
+    }
+    public Lista insertar_final(Estudiante estudiante) {
         Nodo nuevoNodo = new Nodo(estudiante); // variable del nuevo nodo
         if (validaciones.listaVacia(this)) { // verificar si la lista está vacía
             this.Cabeza = nuevoNodo;
@@ -33,41 +40,43 @@ public class Lista {
     public Lista insertar_frente(Estudiante estudiante) {
         Nodo nuevo = new Nodo(estudiante);
         if (validaciones.listaVacia(this)) {
-            this.Cabeza=nuevo;
-        }else {
+            this.Cabeza = nuevo;
+        } else {
             nuevo.setProximo(Cabeza);
             Cabeza = nuevo;
         }
         return this;
     }
 
-   /* public Lista insertar_ordenada(Estudiante estudiante) {
+    public Lista insertar_ordenada(Estudiante estudiante) {
+        Nodo nuevo = new Nodo(estudiante);
+        int año = Integer.parseInt(nuevo.getDato().getMatricula().substring(1, 3));
 
-        Nodo nuevo=new Nodo(estudiante);
-        if(validaciones.listaVacia(this)) {
-            Cabeza=nuevo;
-        }
-        else{
-            if(entrada<Cabeza.getDato()){
+        if (validaciones.listaVacia(this)) {
+            Cabeza = nuevo;
+        } else {
+            int añoCabeza = Integer.parseInt(Cabeza.getDato().getMatricula().substring(1, 3));
+
+            if (año < añoCabeza) {
                 nuevo.setProximo(Cabeza);
-                cabeza=nuevo;
-            }else{
-                nodo reco=cabeza;
-                nodo atras=cabeza;
-                while (entrada>=reco.getDato() && reco.getEnlace()!=null){
-                    atras=reco;
-                    reco=reco.getEnlace();
+                Cabeza = nuevo;
+            } else {
+                Nodo reco = Cabeza;
+                Nodo atras = null;
+                while (reco != null && año >= Integer.parseInt(reco.getDato().getMatricula().substring(1, 3))) {
+                    atras = reco;
+                    reco = reco.getProximo();
                 }
-                if (entrada>=reco.getDato()) {
-                    reco.setEnlance(nuevo);
-                }else {
-                    nuevo.setEnlance(reco);
-                    atras.setEnlance(nuevo);
+                nuevo.setProximo(reco);
+
+                if (atras != null) {
+                    atras.setProximo(nuevo);
                 }
             }
         }
+
         return this;
-    }*/
+    }
 
 
     public Nodo buscarDato(String dato) {
@@ -121,23 +130,27 @@ public class Lista {
         }
     }
 
-    public Estudiante mostrarDato(Nodo nodo) {
-        if (verificarExistenciaNodo(nodo)) {
-            Estudiante estudiante = nodo.getDato();
-            if (estudiante != null) {
-                return estudiante;
-            } else {
-                JOptionPane.showMessageDialog(null, "No se encontró el Ine");
-                return null;
-            }
+        protected void ordenar() {
+        if (Cabeza == null || Cabeza.getProximo() == Cabeza) {
+            return;
         }
-        return null;
+
+        boolean ordenado;
+        do {
+            ordenado = true;
+            Nodo actual = Cabeza;
+            while (actual.getProximo() != Cabeza) {
+                Nodo siguiente = actual.getProximo();
+                if (actual.getDato().getMatricula().compareTo(siguiente.getDato().getMatricula()) > 0) {
+                    Estudiante temp = actual.getDato();
+                    actual.setDato(siguiente.getDato());
+                    siguiente.setDato(temp);
+                    ordenado = false;
+                }
+                actual = actual.getProximo();
+            }
+        } while (!ordenado);
     }
-
-    public static void ordenarLista() {
-
-    }
-
     protected boolean verificarExistenciaNodo(Nodo nodo) {
         return nodo != null;
     }

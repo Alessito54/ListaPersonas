@@ -15,16 +15,16 @@ public class MenuEliminar {
         Validaciones v = new Validaciones();
 
         if (!v.listaVacia(lista)) {
-            String dato = JOptionPane.showInputDialog("Ingrese INE");
+            String dato = JOptionPane.showInputDialog("Ingrese Matricula");
 
             if (dato == null || dato.trim().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Operación cancelada o INE vacío.");
+                JOptionPane.showMessageDialog(null, "Operación cancelada o Matricula vacía.");
                 return;
             }
 
             Nodo nodo = lista.buscarDato(dato);
             if (nodo != null) {
-                String menu = "----- MENÚ DE PERSONAS -----\n1. Eliminar persona (LÓGICA)\n2. Eliminar persona (FÍSICA)\nIngrese una opción:";
+                String menu = "----- MENÚ DE PERSONAS -----\n1. Eliminar Estudiante (LÓGICA)\n2. Eliminar Estudiante (FÍSICA)\nIngrese una opción:";
                 String opcionStr = JOptionPane.showInputDialog(menu);
 
                 if (opcionStr == null || opcionStr.trim().isEmpty()) {
@@ -51,7 +51,7 @@ public class MenuEliminar {
                 JOptionPane.showMessageDialog(null, "No se encontró resultado para " + dato);
             }
         } else {
-            JOptionPane.showMessageDialog(null, "No hay personas registradas");
+            JOptionPane.showMessageDialog(null, "No hay Estudiantes registrados");
         }
     }
 }
