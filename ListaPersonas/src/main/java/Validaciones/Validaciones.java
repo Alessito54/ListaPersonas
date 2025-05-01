@@ -2,12 +2,13 @@ package Validaciones;
 
 
 import Lista.Lista;
+import Persona.Estudiante;
 
 import javax.swing.*;
 
 public class Validaciones {
     public Boolean listaVacia(Lista lista) {
-        if (lista.getCabeza() == null) {//si hay un nodo en la cabeza significa que no esta vacia
+        if (lista.getCabeza() == null || lista.getCabeza().getDato() == null) {//si hay un nodo en la cabeza significa que no esta vacia
             return true;
         }
         return false;
@@ -39,22 +40,28 @@ public class Validaciones {
         return true;
     }
 
-    public static boolean esNombre(String s){
+    public static boolean esNombre(String s) {
         if (s == null || s.length() == 0)
             return false;
 
         return !buscarNumerosEnCadena(s);
-        }
+    }
 
-        public static boolean buscarNumerosEnCadena(String s){
-            for (int i = 0; i < s.length(); i++) {
-                if (Character.isDigit(s.charAt(i))) {
-                    return true;
-                }
+    public static boolean buscarNumerosEnCadena(String s) {
+        for (int i = 0; i < s.length(); i++) {
+            if (Character.isDigit(s.charAt(i))) {
+                return true;
             }
-            return false;
         }
+        return false;
+    }
 
+    public static boolean verificarMatricula(String matricula, Lista lista) {
+        if ((lista.buscarDato(matricula)) == null) {
+            return true;
+        }
+       return false;
+    }
 
 
 }

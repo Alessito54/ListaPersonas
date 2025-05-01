@@ -51,7 +51,7 @@ public class MenuActualizar {
                         case 3: // Actualizar INE
                             String nuevoIne = JOptionPane.showInputDialog("Ingrese el nuevo INE:");
                             if (Validaciones.esIne(nuevoIne)) {
-                                persona.setIne(nuevoIne);
+                                //persona.setIne(nuevoIne);
                                 JOptionPane.showMessageDialog(null, "INE actualizado correctamente.");
                             } else {
                                 JOptionPane.showMessageDialog(null, "INE inválido. Debe tener 18 caracteres alfanuméricos.");

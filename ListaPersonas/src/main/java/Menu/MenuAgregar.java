@@ -36,30 +36,37 @@ public class MenuAgregar {
     private static void agregarPersona(Lista lista) {
         Validaciones validaciones = new Validaciones();
 
+        // Nombre
         String nombre = JOptionPane.showInputDialog("Ingrese el nombre:");
-        if (!validaciones.esNumero(nombre) && Validaciones.esNombre(nombre)) {
-            JOptionPane.showMessageDialog(null, "Nombre agregado exitosamente");
-
-            String edadTexto = JOptionPane.showInputDialog("Ingrese la edad:");
-            if (validaciones.esNumero(edadTexto)) {
-                int edad = Integer.parseInt(edadTexto);
-                if (edad>=18 && edad<=120) {
-                    JOptionPane.showMessageDialog(null, "Edad agregada exitosamente");
-
-                    String ine = JOptionPane.showInputDialog("Ingrese el número de INE:");
-                    if (Validaciones.esIne(ine)) {
-                        JOptionPane.showMessageDialog(null, "Ine agregado exitosamente");
-
-                        Estudiante persona = new Estudiante(nombre, edad, ine);
-                        lista.add(persona);
-                        JOptionPane.showMessageDialog(null, "Estudiante agregado exitosamente.");
-                        return;
-                    }
-                }
-            }
+        if (nombre == null || validaciones.esNumero(nombre) || !Validaciones.esNombre(nombre)) {
+            JOptionPane.showMessageDialog(null, "Nombre inválido");
+            return;
         }
 
-        JOptionPane.showMessageDialog(null, "Caracter inválido");
-        return;
+        // Edad
+        String edadTexto = JOptionPane.showInputDialog("Ingrese la edad:");
+        if (edadTexto == null || !validaciones.esNumero(edadTexto)) {
+            JOptionPane.showMessageDialog(null, "Edad inválida");
+            return;
+        }
+        int edad = Integer.parseInt(edadTexto);
+        if (edad < 18 || edad > 120) {
+            JOptionPane.showMessageDialog(null, "Edad fuera de rango (18-120)");
+            return;
+        }
+
+        // Año de ingreso
+        String añoIngresoTexto = JOptionPane.showInputDialog("Ingrese año de ingreso:");
+        if (añoIngresoTexto == null || !validaciones.esNumero(añoIngresoTexto) || añoIngresoTexto.length() != 4) {
+            JOptionPane.showMessageDialog(null, "Año de ingreso inválido");
+            return; // <-- Aquí el programa termina ese flujo sin error.
+        }
+
+        int añoIngreso = Integer.parseInt(añoIngresoTexto);
+
+        // Crear estudiante y asignar matrícula automáticamente
+        Estudiante estudiante = new Estudiante(nombre, edad, añoIngreso, lista);
+        lista.add(estudiante);
+        JOptionPane.showMessageDialog(null, "Estudiante agregado exitosamente:\n" + estudiante);
     }
 }

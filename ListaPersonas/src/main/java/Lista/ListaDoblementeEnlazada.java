@@ -16,4 +16,6 @@ public class ListaDoblementeEnlazada extends Lista {
     public static void printListaInverso(){}
 
     public static void eliminarAnterior(){}
+
+    public static void intercambiarNodos(){}
 }

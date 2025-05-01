@@ -17,7 +17,7 @@ public class Lista {
 
     public Lista add(Estudiante estudiante) {
         Nodo nuevoNodo = new Nodo(estudiante); // variable del nuevo nodo
-        if (this.Cabeza == null) { // verificar si la lista está vacía
+        if (validaciones.listaVacia(this)) { // verificar si la lista está vacía
             this.Cabeza = nuevoNodo;
         } else {
             Nodo nodoAnterior = this.Cabeza;
@@ -30,6 +30,45 @@ public class Lista {
         return this;
     }
 
+    public Lista insertar_frente(Estudiante estudiante) {
+        Nodo nuevo = new Nodo(estudiante);
+        if (validaciones.listaVacia(this)) {
+            this.Cabeza=nuevo;
+        }else {
+            nuevo.setProximo(Cabeza);
+            Cabeza = nuevo;
+        }
+        return this;
+    }
+
+   /* public Lista insertar_ordenada(Estudiante estudiante) {
+
+        Nodo nuevo=new Nodo(estudiante);
+        if(validaciones.listaVacia(this)) {
+            Cabeza=nuevo;
+        }
+        else{
+            if(entrada<Cabeza.getDato()){
+                nuevo.setProximo(Cabeza);
+                cabeza=nuevo;
+            }else{
+                nodo reco=cabeza;
+                nodo atras=cabeza;
+                while (entrada>=reco.getDato() && reco.getEnlace()!=null){
+                    atras=reco;
+                    reco=reco.getEnlace();
+                }
+                if (entrada>=reco.getDato()) {
+                    reco.setEnlance(nuevo);
+                }else {
+                    nuevo.setEnlance(reco);
+                    atras.setEnlance(nuevo);
+                }
+            }
+        }
+        return this;
+    }*/
+
 
     public Nodo buscarDato(String dato) {
         if (validaciones.listaVacia(this)) {
@@ -38,7 +77,7 @@ public class Lista {
         Nodo nodo = Cabeza;
         while (nodo != null) {
             Estudiante estudiante = nodo.getDato();
-            if (estudiante != null && dato.equals(estudiante.getIne())) {
+            if (estudiante != null && dato.equals(estudiante.getMatricula())) {
                 return nodo;
             }
             nodo = nodo.getProximo();
@@ -83,7 +122,7 @@ public class Lista {
     }
 
     public Estudiante mostrarDato(Nodo nodo) {
-        if (nodo != null) {
+        if (verificarExistenciaNodo(nodo)) {
             Estudiante estudiante = nodo.getDato();
             if (estudiante != null) {
                 return estudiante;
@@ -93,6 +132,10 @@ public class Lista {
             }
         }
         return null;
+    }
+
+    public static void ordenarLista() {
+
     }
 
     protected boolean verificarExistenciaNodo(Nodo nodo) {
