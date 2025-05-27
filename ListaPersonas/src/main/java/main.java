@@ -2,6 +2,8 @@ import Lista.Lista;
 import Lista.ListaDoblementeEnlazada;
 import Lista.ListaCircularSimplementeEnlazada;
 import Lista.ListaCircularDoblementeEnlazada;
+import Lista.Pila;
+import Lista.Cola;
 import Menu.MenuActualizar;
 import Menu.MenuAgregar;
 import Menu.MenuBuscarPersona;
@@ -17,13 +19,15 @@ public class main {
 
         while (lista == null) {
             String tipo = JOptionPane.showInputDialog(null,
-                    "SELECCIONE EL TIPO DE LISTA\n\n" +
+                    "SELECCIONE EL TIPO DE ESTRUCTURA\n\n" +
                             "1.- Lista Simple\n" +
                             "2.- Lista Doblemente Enlazada\n" +
                             "3.- Lista Circular Simple\n" +
-                            "4.- Lista Circular Doblemente Enlazada\n\n" +
+                            "4.- Lista Circular Doblemente Enlazada\n" +
+                            "5.- Pila\n" +
+                            "6.- Cola\n\n" +
                             "Seleccione una opción:",
-                    "Tipo de Lista",
+                    "Tipo de Estructura",
                     JOptionPane.PLAIN_MESSAGE);
 
             if (tipo == null) {
@@ -47,6 +51,12 @@ public class main {
                         break;
                     case 4:
                         lista = new ListaCircularDoblementeEnlazada();
+                        break;
+                    case 5:
+                        lista = new Pila();
+                        break;
+                    case 6:
+                        lista = new Cola();
                         break;
                     default:
                         JOptionPane.showMessageDialog(null, "Opción no válida", "Error", JOptionPane.ERROR_MESSAGE);
